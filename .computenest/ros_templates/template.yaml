@@ -138,7 +138,7 @@ Resources:
         Ref: ZoneId
       SecurityGroupId:
         Ref: SecurityGroup
-      ImageId: centos_7_9_x64_20G_alibase_20240531.vhd
+      ImageId: centos_7_9_x64_20G_alibase_20230613.vhd
       Password:
         Ref: InstancePassword
       InstanceType:
@@ -165,6 +165,7 @@ Resources:
             # 源代码通过computenest-cli被打包为tar.gz包，并发布为部署物
             wget '{{ computenest::file::JJGGu_QuickstartSourceCode }}' -O JJGGu_QuickstartSourceCode.tar.gz
             tar -zxvf JJGGu_QuickstartSourceCode.tar.gz && cd "$(tar -tzf JJGGu_QuickstartSourceCode.tar.gz | head -1 | awk -F'/' '{print $1}')"
+            echo "start run command"
             yum install -y httpd wget
             systemctl start httpd
             mv 2048/* /var/www/html
