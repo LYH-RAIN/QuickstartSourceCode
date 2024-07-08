@@ -106,11 +106,6 @@ Parameters:
     AssociationPropertyMetadata:
       VpcId: VpcId
       ZoneId: ZoneId
-  AdminPassword:
-    Type: String
-    AssociationProperty: ALIYUN::ECS::Instance::Password
-    Label: 管理员密码
-    NoEcho: True
 Resources:
   SecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
@@ -170,8 +165,9 @@ Resources:
             # 源代码通过computenest-cli被打包为tar.gz包，并发布为部署物
             wget '{{ computenest::file::JJGGu_QuickstartSourceCode }}' -O JJGGu_QuickstartSourceCode.tar.gz
             tar -zxvf JJGGu_QuickstartSourceCode.tar.gz && cd "$(tar -tzf JJGGu_QuickstartSourceCode.tar.gz | head -1 | awk -F'/' '{print $1}')"
-            echo "start run command"
-            echo "${AdminPassword}"
+            yum install -y httpd wget
+            systemctl start httpd
+            mv 2048/* /var/www/html
 
             ARGUS_VERSION=3.5.7 /bin/bash -c "$(curl -sS https://cms-agent-${RegionId}.oss-${RegionId}-internal.aliyuncs.com/Argus/agent_install_ecs-1.7.sh)" >> /root/install_cms_agent.log 2>&1
           - RegionId:
@@ -210,9 +206,4 @@ Metadata:
           - VSwitchId
         Label:
           default: 可用区配置
-      - Parameters:
-          - AdminPassword
-        Label:
-          en: Software Configuration
-          zh-cn: 软件配置
       
