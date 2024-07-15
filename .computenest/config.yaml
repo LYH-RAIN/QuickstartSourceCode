@@ -4,7 +4,7 @@ Service:
   DeployMetadata:
     SupplierDeployMetadata:
       FileArtifactRelation:
-        '{{ computenest::file::JJGGu_QuickstartSourceCode }}':
+        '{{ computenest::file::LYH-RAIN_QuickstartSourceCode }}':
           ArtifactId: ${Artifact.Artifact_1.ArtifactId}
           ArtifactVersion: ${Artifact.Artifact_1.ArtifactVersion}
     TemplateConfigs:
@@ -22,7 +22,7 @@ Service:
 Artifact:
   Artifact_1:
     ArtifactType: File
-    ArtifactName: JJGGu_QuickstartSourceCode
+    ArtifactName: LYH-RAIN_QuickstartSourceCode
     ArtifactProperty:
       RegionId: cn-hangzhou
-      Url: 'resources/artifact_resources/file/JJGGu_QuickstartSourceCode.tar.gz'
+      Url: 'resources/artifact_resources/file/LYH-RAIN_QuickstartSourceCode.tar.gz'
